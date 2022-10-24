@@ -18,5 +18,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include('chat.urls'))
+    path("", include('frontend.urls')),
+    path("app/", include('app.urls')),
 ]
+
+handler404 = "Chorite.views.handler404"
+handler500 = "Chorite.views.handler500"
