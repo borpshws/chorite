@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,8 +28,18 @@ SECRET_KEY = "django-insecure-y#ieoi56vbss(qm)c=)jx36b0xcj$5^n2w+sbv7vp34rib+)5g
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "borpshws-chorite-5gwjx4rp9vr2vqg9-8000.preview.app.github.dev"
 ]
 
+MESSAGE_TAGS = {
+    messages.INFO: '🔵',
+    messages.SUCCESS: '✅',
+    messages.WARNING: '⚠️',
+    messages.ERROR: '❌',
+    messages.DEBUG: '🐞'
+}
 
 # Application definition
 
