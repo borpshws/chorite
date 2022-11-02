@@ -1,3 +1,6 @@
+from datetime import datetime
+import sys
+import django
 from django.shortcuts import redirect, render
 
 from .forms import NewUserForm
@@ -25,6 +28,7 @@ def register_request(request):
     return render(request, "app/register.html", context={"register_form":form})
 
 def login_request(request):
+    '''Request the login form and log the user in if valid'''
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -33,7 +37,10 @@ def login_request(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.success(request, f"You are now logged in as {username}.")
+                if not user.is_superuser:
+                    messages.success(request, f"You are now logged in as {user.username}.")
+                else:
+                    messages.success(request, f"Welcome, {user.username} The system time is {datetime.now().strftime('%H:%M:%S')}. Installed Python version {sys.version}. Installed Django version {django.get_version()}. This is an administrator account. No errors present at this time.")
                 return redirect("app:home")
             else:
                 messages.error(request, "Invalid username or password.")

@@ -67,6 +67,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+AUTHENTICATION_BACKENDS = ['Chorite.models.EmailBackend']
+
 ROOT_URLCONF = "Chorite.urls"
 
 TEMPLATES = [

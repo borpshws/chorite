@@ -5,7 +5,9 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<div class="container py-5">
+{% include 'login_background.html' %}
+
+<div class="container py-5" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
     <h1>Register</h1>
     <form method="post">
         {% csrf_token %}
